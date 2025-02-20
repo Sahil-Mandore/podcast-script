@@ -19,12 +19,11 @@ load_dotenv()
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # Pydantic model for request payload
 class ScriptRequest(BaseModel):
     topic: str
@@ -160,3 +159,7 @@ async def generate_script(request: ScriptRequest):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
+
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8000))  # Default to 8000 if PORT is not set
+    uvicorn.run(app, host="0.0.0.0", port=port)
