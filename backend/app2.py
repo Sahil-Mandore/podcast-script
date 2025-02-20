@@ -2,7 +2,9 @@ import streamlit as st
 import requests
 
 # FastAPI endpoint
-API_URL = "http://127.0.0.1:8000/generate_script/"
+API_URL  = "https://podcast-script-generator.onrender.com";
+
+
 
 # Streamlit app
 st.title("Content Script Generator 📝")
