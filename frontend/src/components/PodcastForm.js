@@ -23,7 +23,9 @@ function ScriptForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:8000/generate_script/", {
+     const API_BASE_URL = "https://podcast-script-generator.onrender.com"; // Your backend URL
+
+        const response = await axios.post(`${API_BASE_URL}/generate_script/`, {
         topic,
         tone,
         format,
@@ -31,6 +33,8 @@ function ScriptForm() {
         search_tool: "duckduckgo" // Defaulting to DuckDuckGo, can be changed
         //search_tools: ["duckduckgo", "googlesearch"]
       });
+
+
 
       if (response.status === 200) {
         setScript(response.data.script);
